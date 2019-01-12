@@ -1,16 +1,5 @@
 # kpkt
 
-## Project setup
-```
-npm install
-```
+Dzięki tej stronie możesz obliczyć punkty z egzaminu i świadectwa do szkoły średniej. Przystosowane zarówno dla ósmoklasistów jak i gimnazjalistów!
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
+Źródło danych to strona [Ministerstwa Edukacji Narodowej](https://www.gov.pl/web/edukacja)
