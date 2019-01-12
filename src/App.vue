@@ -47,33 +47,33 @@
       <div class="buton" @click="egzamin = 3" :class="egzamin == 3 ? 'selected': ''">gimnazjalny</div>
       <div v-if="egzamin != 0">
       <div class="point">
-          <div class="pointName">Język polski</div>
+          <div class="pointName"><b>Język polski</b></div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="polski" /></div>
       </div>
       <div class="point">
-          <div class="pointName">Matematyka</div>
+          <div class="pointName"><b>Matematyka</b></div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="matematyka" /></div>
       </div>
       <div class="point">
-          <div class="pointName">Język obcy <span v-if="egzamin == 3">(poziom podstawowy)</span></div>
+          <div class="pointName"><b>Język obcy <span v-if="egzamin == 3">(poziom podstawowy)</span></b></div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="obcy" /></div>
       </div>
       <div v-if="egzamin == 3">
         <div class="point">
-          <div class="pointName">Historia i WOS</div>
+          <div class="pointName"><b>Historia i WOS</b></div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="historia" /></div>
         </div>
         <div class="point">
-          <div class="pointName">Przyrodniczy</div>
+          <div class="pointName"><b>Przyrodniczy</b></div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="pszyrka" /></div>
         </div>
       </div>
-      <div @click="oblicz()" class="buton selected" style="font-size: 120%; padding: 16px 40px; display: block; cursor: pointer; text-align: center; margin: 10px;">{{ moze }}</div>
+      <div class="error" v-if="blad">{{ moze }}</div>
+      <div @click="oblicz()" class="buton bigbuton">{{ wynik }}</div>
       </div>
       </div>
-      
+      <footer>Na podstawie danych z <a href="https://www.gov.pl/web/edukacja">Ministerstwa Edukacji Narodowej</a> &bull; Źródło strony na <a href="https://github.com/pizza61/kpkt">GitHub</a></footer>
     </div>
-  </div>
 </template>
 
 <script>
@@ -96,6 +96,7 @@ export default {
       }
     },
     oblicz: function() {
+      this.blad = false;
       let total = 0;
 
       // OCENY
@@ -117,9 +118,11 @@ export default {
             total += 2;
             break;
           case 1:
+            this.blad = true;
             this.moze = "z jedyneczką daleko nie zajdziesz";
             break;
           default:
+            this.blad = true;
             this.moze = "Nie podałeś oceny!"
             break;
         }
@@ -133,7 +136,6 @@ export default {
       this.konkursyes.forEach((konkurs) => {
         let konkursMax = 0;
         konkurs.sections.forEach(section => {
-          console.log("i cyk sekcja")
           if(section.count) {
             if(section.s > 0) {
               if(section.count[section.s-1].points > konkursMax) {
@@ -155,37 +157,61 @@ export default {
         }
       })
       total += konkursyMax;
-      console.log(total)
       // EGZAMINY
       if(this.egzamin == 8) {
-        if(0 > this.polski <= 100) {
+        if(this.polski <= 100 && this.polski > 0) {
           total += (Number(this.polski))*0.35
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(0 > this.matematyka <= 100) {
+        if(this.matematyka <= 100 && this.matematyka > 0) {
           total += (Number(this.matematyka))*0.35
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(0 > this.obcy <= 100) {
+        if(this.obcy <= 100 && this.obcy > 0) {
           total += (Number(this.obcy))*0.3
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        this.moze = "Twój wynik to "+total+" pkt";
+        if(!this.blad) this.wynik = "Twój wynik to "+total+" pkt";
       } else if (this.egzamin == 3) {
-        if(0 > this.polski <= 100) {
+        if(this.polski <= 100 && this.polski > 0) {
           total += (Number(this.polski))*0.2
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(0 > this.matematyka <= 100) {
+        if(this.matematyka <= 100 && this.matematyka > 0) {
           total += (Number(this.matematyka))*0.2
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(0 > this.obcy <= 100) {
+        if(this.obcy <= 100 && this.obcy > 0) {
           total += (Number(this.obcy))*0.2
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(0 > this.historia <= 100) {
+        if(this.historia <= 100 && this.historia > 0) {
           total += (Number(this.historia))*0.2
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(0 > this.pszyrka <= 100) {
+        if(this.pszyrka <= 100 && this.pszyrka > 0) {
           total += (Number(this.obcy))*0.2
+        } else {
+          this.blad = true;
+          this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        this.moze = "Twój wynik to "+total+" pkt";
+        if (!this.blad) this.wynik = "Twój wynik to "+total+" pkt";
       } else {
+        this.blad = true;
         this.moze = "Nie wybrano egzaminu"
       }
     }
@@ -311,7 +337,10 @@ export default {
     // tylko gimnazjaliści
     historia: 0,
     pszyrka: 0,
-    moze: "Oblicz wynik",
+    //
+    moze: "Błąd",
+    wynik: "Oblicz wynik",
+    blad: false,
   }}
 }
 </script>
@@ -346,6 +375,14 @@ export default {
   padding: 10px;
   font-weight: 600;
   border-radius: 3px;
+}
+
+.error {
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 3px;
+  background: rgb(213, 51, 61);
 }
 .section {
   font-weight: 700;
@@ -388,6 +425,16 @@ export default {
   }
 }
 
+.bigbuton {
+  background: rgb(0, 115, 177);
+  color: white;
+  font-size: 120%; 
+  padding: 16px 40px; 
+  display: block; 
+  cursor: pointer; 
+  text-align: center; 
+  margin: 10px 0;
+}
 .selected {
   background: rgb(0, 115, 177);
   color: white;
@@ -418,5 +465,9 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
  
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+footer {
+  margin: 10px;
 }
 </style>
