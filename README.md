@@ -1,7 +1,8 @@
 # kpkt
 
-Dzięki tej stronie możesz obliczyć punkty z egzaminu i świadectwa do szkoły średniej. Przystosowane zarówno dla ósmoklasistów jak i gimnazjalistów!
+Kalkulator punktów ze świadectwa i egzaminu do szkoły średniej. Przystosowane zarówno dla ósmoklasistów jak i gimnazjalistów.
+
+Dostępne na: https://pizza61.github.io/kpkt/
 
 Źródło danych to strona [Ministerstwa Edukacji Narodowej](https://www.gov.pl/web/edukacja)
 
-Możesz przetestować na: https://pizza61.github.io/kpkt/
