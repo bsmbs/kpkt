@@ -204,7 +204,7 @@ export default {
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
         if(this.pszyrka <= 100 && this.pszyrka > 0) {
-          total += (Number(this.obcy))*0.2
+          total += (Number(this.pszyrka))*0.2
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
