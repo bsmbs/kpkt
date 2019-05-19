@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p class="title">Oblicz sobie punkty</p>
+    <p class="title">Kalkulator punktów</p>
     <div class="window">
       <p class="section">Świadectwo</p>
       <p class="underSection">Oceny</p>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <p class="underSection">Osiągnięcia</p>
-      <p class="tip">Laureaci z konkursów kuratoryjnych są przyjmowani do szkoły w pierwszej kolejności<br>Liczą się osiągnięcia z ostatniej klasy tzn. 8 podstawówki lub 3 gimnazjum<br>Jeżeli klikniesz zaznaczone ponownie, zostanie odznaczone<br>Jeżeli nie posiadasz żadnych osiągnięć, możesz pominąć tę sekcję</p>
+      <p class="tip">Laureaci z konkursów kuratoryjnych <b>przedmiotowych</b> są przyjmowani do szkoły w pierwszej kolejności<br>Liczą się tylko finaliści i laureaci, więc jeśli nigdy nie dostałeś żadnego papierka o tym, to się nie liczy<br><br>Jeżeli klikniesz zaznaczone ponownie, zostanie odznaczone<br>Jeżeli nie posiadasz żadnych osiągnięć, możesz pominąć tę sekcję</p>
       <div v-for="(konkurs, i) in konkursyes" :key="i+16">
         <p class="underUnderSection">{{i+1}}) {{konkurs.name}}</p>
         <div class="point" v-for="(section, i) in konkurs.sections" :key="i+8">
@@ -43,28 +43,29 @@
         </div>
       </div>
       <p class="section">Egzamin</p>
+      <p class="tip">Wyniki właściwych egzaminów zostaną podane 14 czerwca</p>
       <div class="buton" @click="egzamin = 8" :class="egzamin == 8 ? 'selected': ''">ósmoklasisty</div>
       <div class="buton" @click="egzamin = 3" :class="egzamin == 3 ? 'selected': ''">gimnazjalny</div>
       <div v-if="egzamin != 0">
       <div class="point">
-          <div class="pointName"><b>Język polski</b></div>
+          <div class="underUnderSection">Język polski</div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="polski" /></div>
       </div>
       <div class="point">
-          <div class="pointName"><b>Matematyka</b></div>
+          <div class="underUnderSection">Matematyka</div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="matematyka" /></div>
       </div>
       <div class="point">
-          <div class="pointName"><b>Język obcy <span v-if="egzamin == 3">(poziom podstawowy)</span></b></div>
+          <div class="underUnderSection">Język obcy <span v-if="egzamin == 3">(poziom podstawowy)</span></div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="obcy" /></div>
       </div>
       <div v-if="egzamin == 3">
         <div class="point">
-          <div class="pointName"><b>Historia i WOS</b></div>
+          <div class="underUnderSection">Historia i WOS</div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="historia" /></div>
         </div>
         <div class="point">
-          <div class="pointName"><b>Przyrodniczy</b></div>
+          <div class="underUnderSection">Przyrodniczy</div>
           <div class="pointS"><input type="number" min="0" max="100" v-model="pszyrka" /></div>
         </div>
       </div>
@@ -446,13 +447,14 @@ export default {
 
 input {
   width: 30px;
-  margin: 2px;
+  margin: 5px;
   padding: 8px 20px;
   color: #2c3e50;
   font-weight: 600;
   font-size: 100%;
   border-radius: 3px;
   border-color: #0073b1;
+  border-style: solid;
   background: white;
   outline: none;
   text-align: center;
