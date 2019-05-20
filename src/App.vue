@@ -73,7 +73,7 @@
       <div @click="oblicz()" class="buton bigbuton">{{ wynik }}</div>
       </div>
       </div>
-      <footer>Na podstawie danych z <a href="https://www.gov.pl/web/edukacja">Ministerstwa Edukacji Narodowej</a> &bull; Źródło strony na <a href="https://github.com/pizza61/kpkt">GitHub</a></footer>
+      <footer>Na podstawie danych ze strony <a href="https://www.gov.pl/web/edukacja">MEN</a> &bull; Źródło strony na <a href="https://github.com/pizza61/kpkt">GitHub</a></footer>
     </div>
 </template>
 
@@ -238,27 +238,6 @@ export default {
     ],
     konkursyes: [
       {
-        name: "konkursy kuratoryjne o zasięgu ponadwojewódzkim",
-        sections: [
-          {
-            name: "tytuł finalisty konkursu przedmiotowego",
-            points: 10,
-            s: false,
-          },
-          {
-            name: "tytuł laureata konkursu tematycznego lub międzyprzedmiotowego",
-            points: 7,
-            s: false,
-          },
-          {
-            name: "tytuł finalisty konkursu tematycznego lub międzyprzedmiotowego",
-            points: 5,
-            s: false,
-          }
-        ],
-        total: 0,
-      },
-      {
         name: "konkursy kuratoryjne wojewódzkie",
         sections: [{
           name: "tytuł finalisty konkursu przedmiotowego",
@@ -282,6 +261,27 @@ export default {
           ],
           s: 0
         }],
+        total: 0,
+      },
+      {
+        name: "konkursy kuratoryjne o zasięgu ponadwojewódzkim",
+        sections: [
+          {
+            name: "tytuł finalisty konkursu przedmiotowego",
+            points: 10,
+            s: false,
+          },
+          {
+            name: "tytuł laureata konkursu tematycznego lub międzyprzedmiotowego",
+            points: 7,
+            s: false,
+          },
+          {
+            name: "tytuł finalisty konkursu tematycznego lub międzyprzedmiotowego",
+            points: 5,
+            s: false,
+          }
+        ],
         total: 0,
       },
       {
@@ -458,6 +458,7 @@ input {
   background: white;
   outline: none;
   text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
