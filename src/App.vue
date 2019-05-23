@@ -160,19 +160,19 @@ export default {
       total += konkursyMax;
       // EGZAMINY
       if(this.egzamin == 8) {
-        if(this.polski <= 100 && this.polski > 0) {
+        if(this.polski <= 100 && this.polski >= 0) {
           total += (Number(this.polski))*0.35
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(this.matematyka <= 100 && this.matematyka > 0) {
+        if(this.matematyka <= 100 && this.matematyka >= 0) {
           total += (Number(this.matematyka))*0.35
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(this.obcy <= 100 && this.obcy > 0) {
+        if(this.obcy <= 100 && this.obcy >= 0) {
           total += (Number(this.obcy))*0.3
         } else {
           this.blad = true;
@@ -180,35 +180,35 @@ export default {
         }
         if(!this.blad) this.wynik = "Twój wynik to "+total+" pkt";
       } else if (this.egzamin == 3) {
-        if(this.polski <= 100 && this.polski > 0) {
+        if(this.polski <= 100 && this.polski >= 0) {
           total += (Number(this.polski))*0.2
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(this.matematyka <= 100 && this.matematyka > 0) {
+        if(this.matematyka <= 100 && this.matematyka >= 0) {
           total += (Number(this.matematyka))*0.2
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(this.obcy <= 100 && this.obcy > 0) {
+        if(this.obcy <= 100 && this.obcy >= 0) {
           total += (Number(this.obcy))*0.2
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(this.historia <= 100 && this.historia > 0) {
+        if(this.historia <= 100 && this.historia >= 0) {
           total += (Number(this.historia))*0.2
         } else {
           this.blad = true;
           this.moze = "Podano nieprawidłowy wynik egzaminu"
         }
-        if(this.pszyrka <= 100 && this.pszyrka > 0) {
+        if(this.pszyrka <= 100 && this.pszyrka >= 0) {
           total += (Number(this.pszyrka))*0.2
         } else {
           this.blad = true;
-          this.moze = "Podano nieprawidłowy wynik egzaminu"
+          this.moze = "Wybierz egzamin"
         }
         if (!this.blad) this.wynik = "Twój wynik to "+total+" pkt";
       } else {
@@ -376,6 +376,11 @@ export default {
   padding: 10px;
   font-weight: 600;
   border-radius: 3px;
+}
+
+a {
+  color: brown;
+  text-decoration: none;
 }
 
 .error {
